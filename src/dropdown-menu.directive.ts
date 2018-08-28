@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Host, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-import 'rxjs/add/operator/takeUntil';
+import { takeUntil } from 'rxjs/operators';
 
 import { TOGGLE_STATUS } from './toggle-status';
 import { DropdownDirective } from './dropdown.directive';
