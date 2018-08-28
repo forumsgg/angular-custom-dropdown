@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Renderer, HostListener } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { TOGGLE_STATUS } from './toggle-status';
 
