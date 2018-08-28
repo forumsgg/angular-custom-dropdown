@@ -12,14 +12,15 @@ import { DropdownDirective } from './dropdown.directive';
 export class DropdownMenuDirective implements OnInit, OnDestroy {
   ngUnsubscribe: Subject<void> = new Subject<void>();
 
+  sub;
+
   constructor(
     @Host() public dropdown: DropdownDirective,
     private elementRef: ElementRef,
   ) { }
 
   ngOnInit() {
-    this.dropdown.statusChange()
-      .takeUntil(this.ngUnsubscribe)
+    this.sub = this.dropdown.statusChange()
       .subscribe((newStatus: TOGGLE_STATUS) => {
         if (newStatus === TOGGLE_STATUS.OPEN) {
           // Listen to click events to realise when to close the dropdown.
@@ -33,6 +34,8 @@ export class DropdownMenuDirective implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+
+    this.sub.unsubscribe();
 
     document.removeEventListener('click', this.onDocumentClick, true);
   }
